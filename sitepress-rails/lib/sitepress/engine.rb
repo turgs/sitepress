@@ -31,15 +31,12 @@ module Sitepress
       app.paths["app/views"].push site.root_path.expand_path
       app.paths["app/views"].push site.pages_path.expand_path
       app.paths["app/models"].push site.models_path.expand_path
-
-      # Set for view_components to load at ./components
-      app.config.autoload_paths << File.expand_path("./components")
     end
 
-    # Configure sprockets paths for the site.
-    initializer :set_manifest_file_path, before: :append_assets_path do |app|
-      manifest_file = sitepress_configuration.manifest_file_path.expand_path
-      app.config.assets.precompile << manifest_file.to_s if manifest_file.exist?
+    # Set for view_components to load at ./components
+    initializer :add_components_autoload_path, before: :set_autoload_paths do |app|
+      components_path = File.expand_path("./components")
+      app.config.autoload_paths.push(components_path) unless app.config.autoload_paths.include?(components_path)
     end
 
     # Configure Sitepress with Rails settings.
