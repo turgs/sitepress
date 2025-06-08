@@ -3,11 +3,18 @@
   <head>
     <title>Dummy</title>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <!-- Tailwind CSS CDN for no-build setup -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Propshaft asset loading -->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     
     <!-- Rails 8 no-build setup with importmaps -->
     <%= javascript_importmap_tags if respond_to?(:javascript_importmap_tags) %>
   </head>
-  <body>
+  <body class="bg-gray-50 text-gray-900">
     <%= yield %>
   </body>
 </html>

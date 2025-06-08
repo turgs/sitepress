@@ -35,4 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "actionpack",     rails_version
   spec.add_dependency "propshaft", ">= 0.1.0"
   spec.add_dependency "importmap-rails", ">= 1.0.0"
+  spec.add_dependency "stimulus-rails", ">= 1.0.0"
+  spec.add_dependency "turbo-rails", ">= 1.0.0"
 end
