@@ -6,6 +6,10 @@ require "action_mailer/railtie"
 Bundler.require(*Rails.groups)
 require "sitepress-rails"
 
+# Explicitly require the Rails 8 no-build gems
+require "propshaft"
+require "importmap-rails"
+
 module Dummy
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

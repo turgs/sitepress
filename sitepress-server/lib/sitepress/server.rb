@@ -1,5 +1,4 @@
 require "action_controller/railtie"
-require "sprockets/railtie"
 require "sitepress-rails"
 
 # Require the gems listed in Gemfile, including any gems
@@ -45,21 +44,13 @@ module Sitepress
     # found and fail silently.
     routes.append { sitepress_pages root: true, controller: "site", constraints: nil }
 
-    # A logger without a formatter will crash when Sprockets is enabled.
+    # A logger without a formatter will crash when assets are enabled.
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
-    # Debug mode disables concatenation and preprocessing of assets.
-    # This option may cause significant delays in view rendering with a large
-    # number of complex assets.
-    config.assets.debug = false
-
-    # Suppress logger output for asset requests.
-    config.assets.quiet = true
-
-    # Do not fallback to assets pipeline if a precompiled asset is missed.
-    config.assets.compile = true
+    # Enable public file server for serving static assets with Rails 8 no-build approach
+    config.public_file_server.enabled = true
 
     # Allow any host to connect to the development server. The actual binding is
     # controlled by server in the `sitepress-cli`; not by Rails.

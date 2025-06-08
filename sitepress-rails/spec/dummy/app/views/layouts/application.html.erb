@@ -3,6 +3,9 @@
   <head>
     <title>Dummy</title>
     <%= csrf_meta_tags %>
+    
+    <!-- Rails 8 no-build setup with importmaps -->
+    <%= javascript_importmap_tags if respond_to?(:javascript_importmap_tags) %>
   </head>
   <body>
     <%= yield %>
